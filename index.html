@@ -45,14 +45,19 @@ body{
 .artist-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:22px;box-shadow:0 16px 34px rgba(0,0,0,.32)}
 .artist-copy h3{margin:0 0 10px;font-size:clamp(34px,3vw,58px)}
 .artist-copy p{margin:0 0 18px;font-size:clamp(18px,1.35vw,28px);line-height:1.7;color:#dce6f3}
-.videos-block{display:none;margin-top:26px}
-.videos-block.active{display:block}
+.videos-block,.group-videos{display:none;margin-top:26px}
+.videos-block.active,.group-videos.active{display:block}
 .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
 .video-card{position:relative;display:block;min-height:210px;border-radius:24px;overflow:hidden;text-decoration:none;box-shadow:0 16px 34px rgba(0,0,0,.30);background:#101010}
 .video-card img{width:100%;height:100%;object-fit:cover;display:block}
 .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background:linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.10) 38%, rgba(0,0,0,.72) 100%)}
 .video-title{color:#fff;font-size:clamp(20px,1.45vw,28px);line-height:1.18;font-weight:800;text-shadow:0 2px 10px rgba(0,0,0,.6)}
 .video-meta{color:#fff;margin-top:10px;font-size:17px;opacity:.95}
+.subgroups{display:grid;gap:20px}
+.subgroup{padding:18px 0;border-top:1px solid rgba(255,255,255,.08)}
+.subgroup-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.subgroup-head h4{margin:0;font-size:clamp(24px,2vw,34px)}
+.subgroup-btn{padding:12px 22px;font-size:16px}
 .placeholder{color:#dce6f3;font-size:22px;line-height:1.7;padding:10px 0 18px}
 
 @media (max-width:1100px){
@@ -100,7 +105,7 @@ function toggleBlock(id){
 
   <section class="panel" id="sol-panel">
     <h2 class="panel-title">Sound of Lines – Interpreten</h2>
-    <div class="panel-sub">Erst Beschreibung, dann per Öffnen-Button die Videos.</div>
+    <div class="panel-sub">Erst Beschreibung, dann per Öffnen-Button die Videos. Bei Echoheart und Cole & Savannah sind Untermenüs eingebaut.</div>
     
     <div class="artist">
       <div class="artist-head">
@@ -112,6 +117,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-velvet">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/DIoXBwu6z0U" target="_blank" rel="noopener noreferrer">
@@ -180,6 +186,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-velvet')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -193,8 +200,17 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-echoheart">
-        <div class="videos-grid">
+        
+        <div class="subgroups">
           
+            <div class="subgroup">
+              <div class="subgroup-head">
+                <h4>Studio</h4>
+                <button class="open-btn subgroup-btn" onclick="toggleBlock('group-echoheart-studio')">Öffnen</button>
+              </div>
+              <div class="group-videos" id="group-echoheart-studio">
+                <div class="videos-grid">
+                  
     <a class="video-card" href="https://youtu.be/w96JxmcuOKo" target="_blank" rel="noopener noreferrer">
       <img src="https://img.youtube.com/vi/w96JxmcuOKo/hqdefault.jpg" alt="Echoheart – Someone Like Us">
       <div class="overlay">
@@ -339,6 +355,19 @@ function toggleBlock(id){
       </div>
     </a>
     
+                </div>
+                <button class="back-btn small" onclick="toggleBlock('group-echoheart-studio')">← Zurück</button>
+              </div>
+            </div>
+            
+            <div class="subgroup">
+              <div class="subgroup-head">
+                <h4>Live</h4>
+                <button class="open-btn subgroup-btn" onclick="toggleBlock('group-echoheart-live')">Öffnen</button>
+              </div>
+              <div class="group-videos" id="group-echoheart-live">
+                <div class="videos-grid">
+                  
     <a class="video-card" href="https://youtu.be/sTGJHDUBqNw" target="_blank" rel="noopener noreferrer">
       <img src="https://img.youtube.com/vi/sTGJHDUBqNw/hqdefault.jpg" alt="Echoheart – Rise Again (Live in Los Angeles)">
       <div class="overlay">
@@ -395,8 +424,13 @@ function toggleBlock(id){
       </div>
     </a>
     
+                </div>
+                <button class="back-btn small" onclick="toggleBlock('group-echoheart-live')">← Zurück</button>
+              </div>
+            </div>
+            
         </div>
-        <button class="back-btn small" onclick="toggleBlock('block-echoheart')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -410,6 +444,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-nightpulse">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/pdzsKcK1Iwg" target="_blank" rel="noopener noreferrer">
@@ -574,6 +609,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-nightpulse')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -587,6 +623,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-naylah">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/x4UnBGpypUQ" target="_blank" rel="noopener noreferrer">
@@ -791,6 +828,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-naylah')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -804,8 +842,17 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-country">
-        <div class="videos-grid">
+        
+        <div class="subgroups">
           
+            <div class="subgroup">
+              <div class="subgroup-head">
+                <h4>Duette</h4>
+                <button class="open-btn subgroup-btn" onclick="toggleBlock('group-country-duette')">Öffnen</button>
+              </div>
+              <div class="group-videos" id="group-country-duette">
+                <div class="videos-grid">
+                  
     <a class="video-card" href="https://youtu.be/NtFyDqCB-8g" target="_blank" rel="noopener noreferrer">
       <img src="https://img.youtube.com/vi/NtFyDqCB-8g/hqdefault.jpg" alt="Cole Rivers &amp; Savannah Lane – Our Way Home">
       <div class="overlay">
@@ -894,6 +941,19 @@ function toggleBlock(id){
       </div>
     </a>
     
+                </div>
+                <button class="back-btn small" onclick="toggleBlock('group-country-duette')">← Zurück</button>
+              </div>
+            </div>
+            
+            <div class="subgroup">
+              <div class="subgroup-head">
+                <h4>Savannah</h4>
+                <button class="open-btn subgroup-btn" onclick="toggleBlock('group-country-savannah')">Öffnen</button>
+              </div>
+              <div class="group-videos" id="group-country-savannah">
+                <div class="videos-grid">
+                  
     <a class="video-card" href="https://youtu.be/rb-OadGjIVY" target="_blank" rel="noopener noreferrer">
       <img src="https://img.youtube.com/vi/rb-OadGjIVY/hqdefault.jpg" alt="Savannah Lane – When You Hold Me in the Night">
       <div class="overlay">
@@ -926,6 +986,19 @@ function toggleBlock(id){
       </div>
     </a>
     
+                </div>
+                <button class="back-btn small" onclick="toggleBlock('group-country-savannah')">← Zurück</button>
+              </div>
+            </div>
+            
+            <div class="subgroup">
+              <div class="subgroup-head">
+                <h4>Cole</h4>
+                <button class="open-btn subgroup-btn" onclick="toggleBlock('group-country-cole')">Öffnen</button>
+              </div>
+              <div class="group-videos" id="group-country-cole">
+                <div class="videos-grid">
+                  
     <a class="video-card" href="https://youtu.be/S8QRQApl0bQ" target="_blank" rel="noopener noreferrer">
       <img src="https://img.youtube.com/vi/S8QRQApl0bQ/hqdefault.jpg" alt="Cole Rivers – The Ballad of the Lonesome Colt">
       <div class="overlay">
@@ -990,8 +1063,13 @@ function toggleBlock(id){
       </div>
     </a>
     
+                </div>
+                <button class="back-btn small" onclick="toggleBlock('group-country-cole')">← Zurück</button>
+              </div>
+            </div>
+            
         </div>
-        <button class="back-btn small" onclick="toggleBlock('block-country')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -1005,6 +1083,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-ritmo">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/wxlKq9rOiBU" target="_blank" rel="noopener noreferrer">
@@ -1185,6 +1264,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-ritmo')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -1198,6 +1278,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-celtic">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/ePjt1xsPm-U" target="_blank" rel="noopener noreferrer">
@@ -1298,6 +1379,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-celtic')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -1311,6 +1393,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-ravens">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/eCq8CFNyp9g" target="_blank" rel="noopener noreferrer">
@@ -1499,6 +1582,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-ravens')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -1512,6 +1596,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-ethan">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/4I3EXwc8mUM" target="_blank" rel="noopener noreferrer">
@@ -1860,6 +1945,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-ethan')">← Zurück</button>
+        
       </div>
     </div>
     
@@ -1873,6 +1959,7 @@ function toggleBlock(id){
         </div>
       </div>
       <div class="videos-block" id="block-deutsch">
+        
         <div class="videos-grid">
           
     <a class="video-card" href="https://youtu.be/C8vQqoC_oj8" target="_blank" rel="noopener noreferrer">
@@ -2029,6 +2116,7 @@ function toggleBlock(id){
     
         </div>
         <button class="back-btn small" onclick="toggleBlock('block-deutsch')">← Zurück</button>
+        
       </div>
     </div>
     
