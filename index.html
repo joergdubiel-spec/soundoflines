@@ -59,6 +59,14 @@ body{
 .subgroup-head h4{margin:0;font-size:clamp(24px,2vw,34px)}
 .subgroup-btn{padding:12px 22px;font-size:16px}
 .placeholder{color:#dce6f3;font-size:22px;line-height:1.7;padding:10px 0 18px}
+.panel-sub.accent{
+  font-family: "Georgia","Times New Roman",serif;
+  font-style: italic;
+  letter-spacing: .08em;
+  color:#ffcf96;
+  font-size: clamp(20px,1.6vw,30px);
+  opacity:.9;
+}
 
 @media (max-width:1100px){
   .top-grid{grid-template-columns:1fr}
@@ -90,7 +98,8 @@ function toggleBlock(id){
       <span class="card-label">Channel One</span>
       <h2>Sound of Lines</h2>
       <p>Sound of Lines wurde am 02.08.2025 als YouTube-Kanal für KI-basierte Musik gegründet. Die Songs entstehen aus eigenen Texten und werden mithilfe moderner KI-Tools musikalisch umgesetzt.</p>
-      <p>Das Projekt ist als musikalische Reise durch verschiedene Genres konzipiert – insgesamt elf unterschiedliche Stilrichtungen, die jeweils ihren eigenen Charakter, Klang und Ausdruck haben.</p>
+      <p>Eine musikalische Reise durch verschiedene Genres – jede Stilrichtung mit eigenem Charakter, Klang und Ausdruck.</p>
+      <p><strong>Interpreten:</strong> u.a. Echoheart &amp; Nightpulse</p>
       <button class="open-btn" onclick="toggleSection('sol-panel')">Öffnen</button>
     </article>
 
@@ -98,14 +107,15 @@ function toggleBlock(id){
       <span class="card-label">Channel Two</span>
       <h2>Rewind</h2>
       <p>Rewind wurde am 18.11.2025 als eigenständiger YouTube-Kanal ins Leben gerufen. Der Fokus liegt klar auf der musikalischen Epoche von 1980 bis 2000.</p>
-      <p>Auch hier entstehen die Songs aus eigenen Texten und werden mithilfe moderner KI-Tools musikalisch umgesetzt. Aktuell wird der Kanal von drei festen Interpreten getragen, die unterschiedliche Facetten dieser Zeit widerspiegeln.</p>
+      <p>Eigene Texte, umgesetzt mit modernen KI-Tools – inspiriert vom Sound der 80er und 90er.</p>
+      <p><strong>Interpret:</strong> Depeche Lord – Darkwave / Darkpop zwischen Melancholie und mechanischer Präzision</p>
       <button class="open-btn" onclick="toggleSection('rew-panel')">Öffnen</button>
     </article>
   </section>
 
   <section class="panel" id="sol-panel">
     <h2 class="panel-title">Sound of Lines – Interpreten</h2>
-    <div class="panel-sub">Erst Beschreibung, dann per Öffnen-Button die Videos. Bei Echoheart und Cole & Savannah sind Untermenüs eingebaut.</div>
+    <div class="panel-sub accent">Songs &amp; Videos</div>
     
     <div class="artist">
       <div class="artist-head">
