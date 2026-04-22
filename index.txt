@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Sound of Lines</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+color:#fff;
+}
+
+h1{
+font-size:80px;
+text-align:center;
+background:linear-gradient(90deg,#ffcc99,#ffffff,#99ccff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin:30px 0 10px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+max-width:1200px;
+margin:auto;
+padding-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+padding:30px;
+}
+
+.card{
+padding:30px;
+border-radius:20px;
+}
+
+.sol{background:#3a1c0f;}
+.rew{background:#0f1c3a;}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+.open{background:#66b3ff;}
+.back{background:#444;margin:20px;}
+
+.section{display:none;padding:20px;}
+.active{display:block;}
+
+.artist{
+margin-bottom:40px;
+border-bottom:1px solid #333;
+padding-bottom:20px;
+}
+
+.thumb{
+width:320px;
+border-radius:10px;
+}
+
+.videos{display:none;margin-top:20px;}
+.videos.active{display:block;}
+
+.video-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.video img{
+width:100%;
+border-radius:10px;
+}
+</style>
+
+<script>
+function toggleSection(id){
+document.getElementById(id).classList.toggle("active");
+}
+
+function toggleVideos(id){
+document.getElementById(id).classList.toggle("active");
+}
+</script>
+
+</head>
+<body>
+
+<h1>SOUND OF LINES</h1>
+
+<div class="subtitle">
+Zwei musikalische Räume mit eigener Handschrift: Sound of Lines als vielseitige Reise durch unterschiedliche Klangwelten und Rewind als fokussierter Blick auf die Ästhetik und Atmosphäre der Jahre 1980 bis 2000.
+</div>
+
+<div class="grid">
+
+<div class="card sol">
+<h2>Sound of Lines</h2>
+<p>Sound of Lines wurde als vielseitige musikalische Reise durch unterschiedliche Genres aufgebaut. Jeder Interpret steht für eine eigene Klangwelt.</p>
+<button class="open" onclick="toggleSection('sol')">Öffnen</button>
+</div>
+
+<div class="card rew">
+<h2>Rewind</h2>
+<p>Rewind fokussiert sich auf die Ära 1980–2000. Der Bereich bleibt aktuell leer, bis die vollständigen Daten vorliegen.</p>
+<button class="open" onclick="toggleSection('rew')">Öffnen</button>
+</div>
+
+</div>
+
+<!-- SOUND OF LINES -->
+<div id="sol" class="section">
+<button class="back" onclick="toggleSection('sol')">⬅ Zurück</button>
+
+<!-- VELVET -->
+<div class="artist">
+<h2>Velvet Echoes</h2>
+<img class="thumb" src="https://img.youtube.com/vi/DIoXBwu6z0U/hqdefault.jpg">
+<p>60s Beat Sound mit klassischer Studio-Atmosphäre und harmonischen Melodien.</p>
+<button class="open" onclick="toggleVideos('v1')">Videos</button>
+
+<div id="v1" class="videos">
+<div class="video-grid">
+<a href="https://youtu.be/DIoXBwu6z0U" target="_blank">
+<img src="https://img.youtube.com/vi/DIoXBwu6z0U/hqdefault.jpg"></a>
+
+<a href="https://youtu.be/55AG_GTzBbI" target="_blank">
+<img src="https://img.youtube.com/vi/55AG_GTzBbI/hqdefault.jpg"></a>
+</div>
+
+<button class="back" onclick="toggleVideos('v1')">⬅ Zurück</button>
+</div>
+</div>
+
+<!-- NIGHTPULSE -->
+<div class="artist">
+<h2>Nightpulse</h2>
+<img class="thumb" src="https://img.youtube.com/vi/pdzsKcK1Iwg/hqdefault.jpg">
+<p>Elektronische Klangwelten zwischen Neon und Emotion.</p>
+<button class="open" onclick="toggleVideos('v2')">Videos</button>
+
+<div id="v2" class="videos">
+<div class="video-grid">
+<a href="https://youtu.be/pdzsKcK1Iwg" target="_blank">
+<img src="https://img.youtube.com/vi/pdzsKcK1Iwg/hqdefault.jpg"></a>
+
+<a href="https://youtu.be/wkMEwVWvL0Q" target="_blank">
+<img src="https://img.youtube.com/vi/wkMEwVWvL0Q/hqdefault.jpg"></a>
+</div>
+
+<button class="back" onclick="toggleVideos('v2')">⬅ Zurück</button>
+</div>
+</div>
+
+</div>
+
+<!-- REWIND -->
+<div id="rew" class="section">
+<button class="back" onclick="toggleSection('rew')">⬅ Zurück</button>
+<h2>Rewind – folgt</h2>
+</div>
+
+</body>
+</html>
