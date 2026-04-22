@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sound of Lines</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #f3f6fb;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255,120,40,0.22) 0%, rgba(255,120,40,0) 24%),
+    radial-gradient(circle at 88% 12%, rgba(0,170,255,0.22) 0%, rgba(0,170,255,0) 24%),
+    linear-gradient(180deg, #09111f 0%, #0b1730 45%, #0c1a35 100%);
+  min-height: 100vh;
+}
+.page { max-width: 1800px; margin: 0 auto; padding: 18px 16px 60px; }
+.hero { text-align: center; padding: 0 0 28px; }
+.hero-title {
+  margin: 0;
+  font-size: clamp(64px, 10vw, 168px);
+  line-height: .92;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  background: linear-gradient(90deg,#ffcf96 0%,#f5efe6 45%,#8fbcff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  max-width: 1600px;
+  margin: 24px auto 0;
+  font-size: clamp(22px, 2vw, 38px);
+  line-height: 1.6;
+  color: #d7e3f4;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  margin-top: 30px;
+}
+.card {
+  border-radius: 34px;
+  padding: 44px 48px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.32);
+  min-height: 420px;
+}
+.sol-card {
+  background: linear-gradient(180deg, rgba(70,30,12,.88) 0%, rgba(40,18,10,.94) 100%);
+  border: 1px solid rgba(255,175,90,.22);
+}
+.rew-card {
+  background: linear-gradient(180deg, rgba(16,28,52,.90) 0%, rgba(10,19,38,.96) 100%);
+  border: 1px solid rgba(110,180,255,.22);
+}
+.card-label {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+.sol-card .card-label { color: #ffcb93; }
+.rew-card .card-label { color: #bfe0ff; }
+.card h2 {
+  margin: 0 0 24px;
+  font-size: clamp(54px, 4vw, 90px);
+  line-height: .95;
+}
+.card p {
+  margin: 0 0 20px;
+  font-size: clamp(22px, 1.7vw, 34px);
+  line-height: 1.7;
+}
+.open-btn, .back-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 15px 26px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.open-btn { background: #8fc7ff; color: #06203b; }
+.back-btn { background: rgba(255,255,255,.14); color: #fff; }
+.back-btn.small { margin-top: 22px; font-size: 16px; padding: 12px 20px; }
+.section {
+  display: none;
+  margin-top: 36px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.section.active { display: block; }
+.section-title {
+  margin: 0 0 10px;
+  font-size: clamp(34px, 3vw, 56px);
+}
+.section-sub {
+  margin: 0 0 26px;
+  color: #d7e3f4;
+  font-size: 18px;
+}
+.artist {
+  padding: 28px 0 34px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.artist-head {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.artist-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 16px 34px rgba(0,0,0,.32);
+}
+.artist-copy h3 {
+  margin: 0 0 10px;
+  font-size: clamp(34px, 3vw, 58px);
+}
+.artist-copy p {
+  margin: 0 0 18px;
+  font-size: clamp(18px, 1.35vw, 28px);
+  line-height: 1.7;
+  color: #dce6f3;
+}
+.artist-videos {
+  display: none;
+  margin-top: 26px;
+}
+.artist-videos.active { display: block; }
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+}
+.video-card {
+  position: relative;
+  display: block;
+  min-height: 210px;
+  border-radius: 24px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 16px 34px rgba(0,0,0,.30);
+  background: #101010;
+}
+.video-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.10) 38%, rgba(0,0,0,.72) 100%);
+}
+.video-title {
+  color: #fff;
+  font-size: clamp(20px, 1.45vw, 28px);
+  line-height: 1.18;
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(0,0,0,.6);
+}
+.video-meta {
+  color: #fff;
+  margin-top: 10px;
+  font-size: 17px;
+  opacity: .95;
+}
+.placeholder {
+  color: #dce6f3;
+  font-size: 22px;
+  line-height: 1.7;
+  padding: 10px 0 18px;
+}
+
+@media (max-width: 1100px) {
+  .cards { grid-template-columns: 1fr; }
+  .artist-head { grid-template-columns: 1fr; }
+}
+</style>
+<script>
+function toggleSection(id) {
+  document.getElementById(id).classList.toggle('active');
+}
+function toggleVideos(id) {
+  document.getElementById('videos-' + id).classList.toggle('active');
+}
+</script>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <h1 class="hero-title">Sound of Lines</h1>
+    <div class="hero-sub">
+      Zwei musikalische Räume mit eigener Handschrift: Sound of Lines als vielseitige Reise durch unterschiedliche Klangwelten und Rewind als fokussierter Blick auf die Ästhetik und Atmosphäre der Jahre 1980 bis 2000.
+    </div>
+  </header>
+
+  <section class="cards">
+    <article class="card sol-card">
+      <span class="card-label">Channel One</span>
+      <h2>Sound of Lines</h2>
+      <p>Sound of Lines wurde am 02.08.2025 als YouTube-Kanal für KI-basierte Musik gegründet. Die Songs entstehen aus eigenen Texten und werden mithilfe moderner KI-Tools musikalisch umgesetzt.</p>
+      <p>Das Projekt ist als musikalische Reise durch verschiedene Genres konzipiert – insgesamt elf unterschiedliche Stilrichtungen, die jeweils ihren eigenen Charakter, Klang und Ausdruck haben.</p>
+      <button class="open-btn" onclick="toggleSection('sol-section')">Öffnen</button>
+    </article>
+
+    <article class="card rew-card">
+      <span class="card-label">Channel Two</span>
+      <h2>Rewind</h2>
+      <p>Rewind wurde am 18.11.2025 als eigenständiger YouTube-Kanal ins Leben gerufen. Der Fokus liegt klar auf der musikalischen Epoche von 1980 bis 2000.</p>
+      <p>Auch hier entstehen die Songs aus eigenen Texten und werden mithilfe moderner KI-Tools musikalisch umgesetzt. Aktuell wird der Kanal von drei festen Interpreten getragen, die unterschiedliche Facetten dieser Zeit widerspiegeln.</p>
+      <button class="open-btn" onclick="toggleSection('rewind-section')">Öffnen</button>
+    </article>
+  </section>
+
+  <section class="section" id="sol-section">
+    <h2 class="section-title">Sound of Lines – Interpreten</h2>
+    <div class="section-sub">Jeder Interpret zeigt erst Beschreibung und dann per Öffnen-Button die Videos.</div>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/DIoXBwu6z0U/hqdefault.jpg" alt="The Velvet Echoes">
+        <div class="artist-copy">
+          <h3>The Velvet Echoes</h3>
+          <p>Eine zeitlose Playlist, das farbenreiche 1964-TV-Studio-Revival der Velvet Echoes. Ob mehrteilige Medleys, Vintage-Studioaufnahmen oder Storyvideos — diese Playlist verbindet Harmonie, Charme und den Geist einer vergangenen Ära.</p>
+          <button class="open-btn" onclick="toggleVideos('velvet')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-velvet">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/DIoXBwu6z0U" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/DIoXBwu6z0U/hqdefault.jpg" alt="The Velvet Echoes – I&#x27;m Sorry, Roxanne">
+      <div class="video-overlay">
+        <div class="video-title">The Velvet Echoes – I&#x27;m Sorry, Roxanne</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/55AG_GTzBbI" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/55AG_GTzBbI/hqdefault.jpg" alt="The Velvet Echoes – Don&#x27;t Be So Hard">
+      <div class="video-overlay">
+        <div class="video-title">The Velvet Echoes – Don&#x27;t Be So Hard</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/EHq6mM5IIpE" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/EHq6mM5IIpE/hqdefault.jpg" alt="The Velvet Echoes – You&#x27;ll Never Stop Me Loving You">
+      <div class="video-overlay">
+        <div class="video-title">The Velvet Echoes – You&#x27;ll Never Stop Me Loving You</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/e3JkJPz87VU" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/e3JkJPz87VU/hqdefault.jpg" alt="The Velvet Echoes – Just One Step Away">
+      <div class="video-overlay">
+        <div class="video-title">The Velvet Echoes – Just One Step Away</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/RFcD8JAk0l4" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/RFcD8JAk0l4/hqdefault.jpg" alt="The Velvet Echoes – Every Word Is Love">
+      <div class="video-overlay">
+        <div class="video-title">The Velvet Echoes – Every Word Is Love</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/DdAu33IGi9E" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/DdAu33IGi9E/hqdefault.jpg" alt="The Velvet Echoes – When I Saw You Standing There">
+      <div class="video-overlay">
+        <div class="video-title">The Velvet Echoes – When I Saw You Standing There</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('velvet')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/w96JxmcuOKo/hqdefault.jpg" alt="Echoheart">
+        <div class="artist-copy">
+          <h3>Echoheart</h3>
+          <p>Echoheart verbindet emotionale Rockballaden mit epischer Weite, kraftvollen Gitarren und einer Atmosphäre zwischen Verletzlichkeit und Aufbruch. Die Songs reichen von ruhigen, nachdenklichen Momenten bis zu großen Hymnen voller Energie, Hoffnung und innerer Stärke.</p>
+          <button class="open-btn" onclick="toggleVideos('echoheart')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-echoheart">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/w96JxmcuOKo" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/w96JxmcuOKo/hqdefault.jpg" alt="Echoheart – Someone Like Us">
+      <div class="video-overlay">
+        <div class="video-title">Echoheart – Someone Like Us</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/VIY5_bjwbDQ" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/VIY5_bjwbDQ/hqdefault.jpg" alt="Echoheart – Out of the Ashes">
+      <div class="video-overlay">
+        <div class="video-title">Echoheart – Out of the Ashes</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/zMCe1NGeNnE" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/zMCe1NGeNnE/hqdefault.jpg" alt="Echoheart – Free Because I Fight">
+      <div class="video-overlay">
+        <div class="video-title">Echoheart – Free Because I Fight</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/Mb2plpzx_5I" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/Mb2plpzx_5I/hqdefault.jpg" alt="Echoheart – In the Light of the Shadow">
+      <div class="video-overlay">
+        <div class="video-title">Echoheart – In the Light of the Shadow</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/hGhkAla5oPU" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/hGhkAla5oPU/hqdefault.jpg" alt="Echoheart – The Power That Remains">
+      <div class="video-overlay">
+        <div class="video-title">Echoheart – The Power That Remains</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/XeI7EU8QHRY" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/XeI7EU8QHRY/hqdefault.jpg" alt="Echoheart – Thunder In My Head">
+      <div class="video-overlay">
+        <div class="video-title">Echoheart – Thunder In My Head</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('echoheart')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/pdzsKcK1Iwg/hqdefault.jpg" alt="Nightpulse">
+        <div class="artist-copy">
+          <h3>Nightpulse</h3>
+          <p>Nightpulse 2025 – Von Schatten zu Neon. Die offizielle Sammlung aller Nightpulse-Releases – tiefe elektronische Reisen zwischen Rhythmus und Emotion. Analoge Wärme trifft auf cineastische Tiefe.</p>
+          <button class="open-btn" onclick="toggleVideos('nightpulse')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-nightpulse">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/pdzsKcK1Iwg" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/pdzsKcK1Iwg/hqdefault.jpg" alt="Nightpulse – Fading Through the Light">
+      <div class="video-overlay">
+        <div class="video-title">Nightpulse – Fading Through the Light</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/wkMEwVWvL0Q" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/wkMEwVWvL0Q/hqdefault.jpg" alt="Nightpulse – Love Is the Queen">
+      <div class="video-overlay">
+        <div class="video-title">Nightpulse – Love Is the Queen</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/Gfj57PyABKA" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/Gfj57PyABKA/hqdefault.jpg" alt="Nightpulse – Echo/Body">
+      <div class="video-overlay">
+        <div class="video-title">Nightpulse – Echo/Body</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/yCBUzpm9fvc" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/yCBUzpm9fvc/hqdefault.jpg" alt="Nightpulse – Voltage">
+      <div class="video-overlay">
+        <div class="video-title">Nightpulse – Voltage</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/tYSA7r_7Kak" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/tYSA7r_7Kak/hqdefault.jpg" alt="Nightpulse – You Were the Bass">
+      <div class="video-overlay">
+        <div class="video-title">Nightpulse – You Were the Bass</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/t_cSAFdx8KU" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/t_cSAFdx8KU/hqdefault.jpg" alt="Nightpulse – Shadows Cast by My Own Sun">
+      <div class="video-overlay">
+        <div class="video-title">Nightpulse – Shadows Cast by My Own Sun</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('nightpulse')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/x4UnBGpypUQ/hqdefault.jpg" alt="NAYLAH">
+        <div class="artist-copy">
+          <h3>NAYLAH</h3>
+          <p>Tauche ein in die Welt von NAYLAH – jede ihrer Songs erzählt eine Geschichte. Von gefühlvollen Balladen über leidenschaftlichen Pop bis zu rhythmischem Hip-Hop – ihre Musik ist eine Reise durch Liebe, Selbstfindung und echte Emotion.</p>
+          <button class="open-btn" onclick="toggleVideos('naylah')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-naylah">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/x4UnBGpypUQ" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/x4UnBGpypUQ/hqdefault.jpg" alt="NAYLAH – Nobody Does It Better">
+      <div class="video-overlay">
+        <div class="video-title">NAYLAH – Nobody Does It Better</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/M7VQ5Rq63n8" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/M7VQ5Rq63n8/hqdefault.jpg" alt="NAYLAH – No Stopping Us">
+      <div class="video-overlay">
+        <div class="video-title">NAYLAH – No Stopping Us</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/8c_m9z8TWbI" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/8c_m9z8TWbI/hqdefault.jpg" alt="NAYLAH – Stay Away">
+      <div class="video-overlay">
+        <div class="video-title">NAYLAH – Stay Away</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/2FKO2ey7EcA" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/2FKO2ey7EcA/hqdefault.jpg" alt="NAYLAH – No Stopping Us (Afterglow Version)">
+      <div class="video-overlay">
+        <div class="video-title">NAYLAH – No Stopping Us (Afterglow Version)</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/9R4_q9WYcmk" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/9R4_q9WYcmk/hqdefault.jpg" alt="NAYLAH – I’m Not Lost">
+      <div class="video-overlay">
+        <div class="video-title">NAYLAH – I’m Not Lost</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/0UK0yZ59Zw8" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/0UK0yZ59Zw8/hqdefault.jpg" alt="NAYLAH – No Crown, Still a Queen">
+      <div class="video-overlay">
+        <div class="video-title">NAYLAH – No Crown, Still a Queen</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('naylah')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/NtFyDqCB-8g/hqdefault.jpg" alt="Cole Rivers &amp; Savannah Lane">
+        <div class="artist-copy">
+          <h3>Cole Rivers &amp; Savannah Lane</h3>
+          <p>Von staubigen Westernstädten bis zu endlosen Prärien — moderne Country-Geschichten voller Freiheit, Sehnsucht, Heimatgefühl und offenem Horizont. Akustische Balladen, Duette mit Herz und klassische Western-Vibes treffen hier auf warmen, zeitlosen Country-Sound.</p>
+          <button class="open-btn" onclick="toggleVideos('country')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-country">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/NtFyDqCB-8g" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/NtFyDqCB-8g/hqdefault.jpg" alt="Cole Rivers &amp; Savannah Lane – Our Way Home">
+      <div class="video-overlay">
+        <div class="video-title">Cole Rivers &amp; Savannah Lane – Our Way Home</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/JelxChDKzzg" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/JelxChDKzzg/hqdefault.jpg" alt="Cole Rivers &amp; Savannah Lane – Where Our Hearts Belong">
+      <div class="video-overlay">
+        <div class="video-title">Cole Rivers &amp; Savannah Lane – Where Our Hearts Belong</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/RvEDdY6a-ss" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/RvEDdY6a-ss/hqdefault.jpg" alt="Cole Rivers &amp; Savannah Lane – Because We Are Country">
+      <div class="video-overlay">
+        <div class="video-title">Cole Rivers &amp; Savannah Lane – Because We Are Country</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/VhQerRrvj-Q" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/VhQerRrvj-Q/hqdefault.jpg" alt="Cole Rivers &amp; Savannah Lane – When the Dust Settles">
+      <div class="video-overlay">
+        <div class="video-title">Cole Rivers &amp; Savannah Lane – When the Dust Settles</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/rb-OadGjIVY" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/rb-OadGjIVY/hqdefault.jpg" alt="Savannah Lane – When You Hold Me in the Night">
+      <div class="video-overlay">
+        <div class="video-title">Savannah Lane – When You Hold Me in the Night</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/S8QRQApl0bQ" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/S8QRQApl0bQ/hqdefault.jpg" alt="Cole Rivers – The Ballad of the Lonesome Colt">
+      <div class="video-overlay">
+        <div class="video-title">Cole Rivers – The Ballad of the Lonesome Colt</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('country')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/wxlKq9rOiBU/hqdefault.jpg" alt="Ritmo del Alma">
+        <div class="artist-copy">
+          <h3>Ritmo del Alma</h3>
+          <p>Spüre den Rhythmus der lateinamerikanischen Seele. Von der Leidenschaft der Bachata bis zur Energie des Merengue nehmen dich Diego und Marisol mit auf eine Reise voller Feuer, Romantik und karibischem Rhythmus.</p>
+          <button class="open-btn" onclick="toggleVideos('ritmo')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-ritmo">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/wxlKq9rOiBU" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/wxlKq9rOiBU/hqdefault.jpg" alt="Ritmo del Alma – Entre el ron y tus ojos">
+      <div class="video-overlay">
+        <div class="video-title">Ritmo del Alma – Entre el ron y tus ojos</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/CNqoPg3KvQs" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/CNqoPg3KvQs/hqdefault.jpg" alt="Ritmo del Alma – Bajo la Luna">
+      <div class="video-overlay">
+        <div class="video-title">Ritmo del Alma – Bajo la Luna</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/JCvukGL62XE" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/JCvukGL62XE/hqdefault.jpg" alt="Ritmo del Alma – Baila Conmigo">
+      <div class="video-overlay">
+        <div class="video-title">Ritmo del Alma – Baila Conmigo</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/57D79Z2Gf-A" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/57D79Z2Gf-A/hqdefault.jpg" alt="Ritmo del Alma – Sombras de tu Amor">
+      <div class="video-overlay">
+        <div class="video-title">Ritmo del Alma – Sombras de tu Amor</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/Mt2oB3NVJsc" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/Mt2oB3NVJsc/hqdefault.jpg" alt="Ritmo del Alma – Por Siempre Contigo">
+      <div class="video-overlay">
+        <div class="video-title">Ritmo del Alma – Por Siempre Contigo</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/GOZXC1g8jnA" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/GOZXC1g8jnA/hqdefault.jpg" alt="Ritmo del Alma – ¡Baila, Corazón!">
+      <div class="video-overlay">
+        <div class="video-title">Ritmo del Alma – ¡Baila, Corazón!</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('ritmo')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/ePjt1xsPm-U/hqdefault.jpg" alt="Celtic Whisper">
+        <div class="artist-copy">
+          <h3>Celtic Whisper</h3>
+          <p>Tauche ein in die Welt der keltischen Klänge und Geschichten. Celtic Chronicles erzählt uralte Sagen und Legenden – in Liedern voller Mystik, Sehnsucht und zeitloser Schönheit.</p>
+          <button class="open-btn" onclick="toggleVideos('celtic')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-celtic">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/ePjt1xsPm-U" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/ePjt1xsPm-U/hqdefault.jpg" alt="Celtic Whisper – Deirdre">
+      <div class="video-overlay">
+        <div class="video-title">Celtic Whisper – Deirdre</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/vNzmFQxj9cM" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/vNzmFQxj9cM/hqdefault.jpg" alt="Celtic Whisper – Finn and the Salmon of Knowledge">
+      <div class="video-overlay">
+        <div class="video-title">Celtic Whisper – Finn and the Salmon of Knowledge</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/BIE4ICszRak" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/BIE4ICszRak/hqdefault.jpg" alt="Celtic Whisper – Children of Lir">
+      <div class="video-overlay">
+        <div class="video-title">Celtic Whisper – Children of Lir</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/AuoXSkbqJ8Q" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/AuoXSkbqJ8Q/hqdefault.jpg" alt="Celtic Whisper – Cú Chulainn">
+      <div class="video-overlay">
+        <div class="video-title">Celtic Whisper – Cú Chulainn</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/IHCDEt-AjkY" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/IHCDEt-AjkY/hqdefault.jpg" alt="Celtic Whisper – Diarmuid &amp; Gráinne">
+      <div class="video-overlay">
+        <div class="video-title">Celtic Whisper – Diarmuid &amp; Gráinne</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/Bi1Hm5YsLFQ" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/Bi1Hm5YsLFQ/hqdefault.jpg" alt="Celtic Whisper – Oisín and the Land of Eternal Youth">
+      <div class="video-overlay">
+        <div class="video-title">Celtic Whisper – Oisín and the Land of Eternal Youth</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('celtic')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/eCq8CFNyp9g/hqdefault.jpg" alt="Ravens Cry">
+        <div class="artist-copy">
+          <h3>Ravens Cry</h3>
+          <p>Diese Playlist vereint düstere Gothic-Songs und Darkwave-Tracks mit starken weiblichen und männlichen Lead-Vocals. Dunkle Gitarren, treibende Drums und atmosphärische Synths verbinden sich mit mystischen Melodien und intensiven Refrains.</p>
+          <button class="open-btn" onclick="toggleVideos('ravens')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-ravens">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/eCq8CFNyp9g" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/eCq8CFNyp9g/hqdefault.jpg" alt="Ravens Cry – In Whose Name Did I Die">
+      <div class="video-overlay">
+        <div class="video-title">Ravens Cry – In Whose Name Did I Die</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/a9tEFbed6CY" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/a9tEFbed6CY/hqdefault.jpg" alt="Ravens Cry – Because You Are Dead">
+      <div class="video-overlay">
+        <div class="video-title">Ravens Cry – Because You Are Dead</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/Xvjl9EunvIo" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/Xvjl9EunvIo/hqdefault.jpg" alt="Ravens Cry – Sanctum of Shadows Part I">
+      <div class="video-overlay">
+        <div class="video-title">Ravens Cry – Sanctum of Shadows Part I</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/59tTFsPPXWc" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/59tTFsPPXWc/hqdefault.jpg" alt="Ravens Cry – Sanctum of Shadows Part II">
+      <div class="video-overlay">
+        <div class="video-title">Ravens Cry – Sanctum of Shadows Part II</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/0H_yBL5aL8E" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/0H_yBL5aL8E/hqdefault.jpg" alt="Ravens Cry – Rebirth or Silence">
+      <div class="video-overlay">
+        <div class="video-title">Ravens Cry – Rebirth or Silence</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/amu6Ucdv91E" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/amu6Ucdv91E/hqdefault.jpg" alt="Ravens Cry – The Man Without A Soul">
+      <div class="video-overlay">
+        <div class="video-title">Ravens Cry – The Man Without A Soul</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('ravens')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/4I3EXwc8mUM/hqdefault.jpg" alt="Ethan Vale">
+        <div class="artist-copy">
+          <h3>Ethan Vale</h3>
+          <p>Ein Weg durch Stille, Licht und Gedanken. Ethan Vale erzählt in seinen Songs vom Suchen und Finden, vom Loslassen und Weitergehen. Ruhig, ehrlich, echt.</p>
+          <button class="open-btn" onclick="toggleVideos('ethan')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-ethan">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/4I3EXwc8mUM" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/4I3EXwc8mUM/hqdefault.jpg" alt="Ethan Vale – Never Give Up">
+      <div class="video-overlay">
+        <div class="video-title">Ethan Vale – Never Give Up</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/78AmVNb85Nk" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/78AmVNb85Nk/hqdefault.jpg" alt="Ethan Vale – Still Alive">
+      <div class="video-overlay">
+        <div class="video-title">Ethan Vale – Still Alive</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/BGOd-72txCg" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/BGOd-72txCg/hqdefault.jpg" alt="Ethan Vale – Everything Changes">
+      <div class="video-overlay">
+        <div class="video-title">Ethan Vale – Everything Changes</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/I89Dqp9Zux4" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/I89Dqp9Zux4/hqdefault.jpg" alt="Ethan Vale – As Long As My Heart Beats">
+      <div class="video-overlay">
+        <div class="video-title">Ethan Vale – As Long As My Heart Beats</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/TwceE-O0Ous" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/TwceE-O0Ous/hqdefault.jpg" alt="Ethan Vale – Traces Of Love">
+      <div class="video-overlay">
+        <div class="video-title">Ethan Vale – Traces Of Love</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/0VG5YM2OJDk" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/0VG5YM2OJDk/hqdefault.jpg" alt="Ethan Vale – How Could You Cross That Bridge">
+      <div class="video-overlay">
+        <div class="video-title">Ethan Vale – How Could You Cross That Bridge</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('ethan')">← Zurück</button>
+      </div>
+    </section>
+    
+    <section class="artist">
+      <div class="artist-head">
+        <img class="artist-thumb" src="https://img.youtube.com/vi/C8vQqoC_oj8/hqdefault.jpg" alt="Deutsch Edition">
+        <div class="artist-copy">
+          <h3>Deutsch Edition</h3>
+          <p>Von mitreißenden Mallorca- und Party-Songs bis zu tiefgehenden, poetischen Schlager- und Popsongs – deutsche Musik in allen Facetten. Mitsing-Hits, Sommerstimmung und gefühlvolle Texte.</p>
+          <button class="open-btn" onclick="toggleVideos('deutsch')">Öffnen</button>
+        </div>
+      </div>
+      <div class="artist-videos" id="videos-deutsch">
+        <div class="videos-grid">
+          
+    <a class="video-card" href="https://youtu.be/C8vQqoC_oj8" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/C8vQqoC_oj8/hqdefault.jpg" alt="Jonas Aven – Die Brücke">
+      <div class="video-overlay">
+        <div class="video-title">Jonas Aven – Die Brücke</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/k9mgiiTUfHc" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/k9mgiiTUfHc/hqdefault.jpg" alt="Jonas Aven – Was ihr mir gabt trag ich im Herzen">
+      <div class="video-overlay">
+        <div class="video-title">Jonas Aven – Was ihr mir gabt trag ich im Herzen</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/ruVKOY_5N8A" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/ruVKOY_5N8A/hqdefault.jpg" alt="Herzfarben – Liebe mich im Sommer">
+      <div class="video-overlay">
+        <div class="video-title">Herzfarben – Liebe mich im Sommer</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/SBrc_2ajLxY" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/SBrc_2ajLxY/hqdefault.jpg" alt="Herzfarben – Wir tanzen durch die Zeit">
+      <div class="video-overlay">
+        <div class="video-title">Herzfarben – Wir tanzen durch die Zeit</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/91PJOABsSeE" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/91PJOABsSeE/hqdefault.jpg" alt="DJ Palma – 1000 Drinks und ein Gefühl">
+      <div class="video-overlay">
+        <div class="video-title">DJ Palma – 1000 Drinks und ein Gefühl</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://youtu.be/FW2vWYiu-vM" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.youtube.com/vi/FW2vWYiu-vM/hqdefault.jpg" alt="Stiller Schrei – Innerlich zerrissen">
+      <div class="video-overlay">
+        <div class="video-title">Stiller Schrei – Innerlich zerrissen</div>
+        <div class="video-meta">Auf YouTube ansehen</div>
+      </div>
+    </a>
+    
+        </div>
+        <button class="back-btn small" onclick="toggleVideos('deutsch')">← Zurück</button>
+      </div>
+    </section>
+    
+    <button class="back-btn" onclick="toggleSection('sol-section')">← Zurück</button>
+  </section>
+
+  <section class="section" id="rewind-section">
+    <h2 class="section-title">Rewind – Vorbereitung</h2>
+    <div class="placeholder">
+      Dieser Bereich bleibt vorerst leer, bis die Rewind-Daten vollständig vorliegen.<br><br>
+      Geplant sind:
+      <br>• Depeche Lord
+      <br>• Luna Ray
+      <br>• Jason Hartley
+    </div>
+    <button class="back-btn" onclick="toggleSection('rewind-section')">← Zurück</button>
+  </section>
+</div>
+</body>
+</html>
