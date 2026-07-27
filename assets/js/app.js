@@ -76,21 +76,9 @@ function toggleBlock(id){
   }
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-  const hash = window.location.hash;
-  if(hash === '#depeche-lord'){
-    const rew = document.getElementById('rew-panel');
-    const dep = document.getElementById('block-depeche');
-    if(rew) rew.classList.add('active');
-    if(dep) dep.classList.add('active');
-    const target = document.getElementById('depeche-lord');
-    if(target){
-      setTimeout(function(){
-        target.scrollIntoView({behavior:'auto', block:'start'});
-      }, 50);
-    }
-  }
-});
+// The legacy hash jump was removed. The Depeche Lord section is moved into
+// the new layout later in this file, so scrolling before that move produced an
+// incorrect landing position on phones.
 
 
 
@@ -240,9 +228,14 @@ function toggleBlock(id){
     const items=[
       ['Tracks','group-depeche-official'],['World Tour 2026','group-depeche-tour'],['Band','group-depeche-band'],['Geschichte','group-depeche-origin'],['Interviews','group-depeche-interviews'],['Statements','group-depeche-statements'],['Studio Stories','group-depeche-behind'],['Pear Studios & Team','group-depeche-staff'],['Off the Record','group-depeche-offrecord'],['Archiv','group-depeche-archive']
     ];
-    items.forEach(function(item,i){const b=document.createElement('button');b.type='button';b.textContent=item[0];b.dataset.target=item[1];b.onclick=function(){openDlGroup(item[1],b);};if(i===0)b.classList.add('active');nav.appendChild(b);});
+    items.forEach(function(item){const b=document.createElement('button');b.type='button';b.textContent=item[0];b.dataset.target=item[1];b.onclick=function(){openDlGroup(item[1],b);};nav.appendChild(b);});
     block.insertBefore(nav,block.firstChild);
-    const first=document.getElementById('group-depeche-official'); if(first){first.classList.add('active');setButtons(first.id,true);}
+    // Start with every Depeche-Lord subsection closed. Visitors choose the section themselves.
+    block.querySelectorAll(':scope > .subgroups > .subgroup > .group-videos.active').forEach(function(el){
+      el.classList.remove('active');
+      setButtons(el.id,false);
+    });
+    nav.querySelectorAll('button.active').forEach(function(btn){btn.classList.remove('active');});
   }
   function buildStories(){
     document.querySelectorAll('#group-depeche-official .story-toggle,#group-depeche-official .story-panel').forEach(el=>el.remove());
@@ -268,6 +261,12 @@ function toggleBlock(id){
     document.querySelectorAll('.hall-portrait').forEach(b=>b.addEventListener('click',()=>showArtist(b.dataset.artist)));
     document.querySelectorAll('#view-depeche .back-btn').forEach(b=>b.remove());
     showView('view-depeche');
+    if(window.location.hash === '#depeche-lord'){
+      setTimeout(function(){
+        const target=document.querySelector('#depeche-lord .dl-main-hero') || document.getElementById('depeche-lord');
+        if(target) target.scrollIntoView({behavior:'auto',block:'start'});
+      },180);
+    }
   });
 })();
 

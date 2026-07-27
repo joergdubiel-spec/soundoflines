@@ -451,3 +451,53 @@ body{
 @media(max-width:650px){.archive-return{width:100%;text-align:center;top:8px}}
 @media(max-width:1050px){.dl-team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dl-archive-pics{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:650px){.dl-team-grid,.dl-archive-pics{grid-template-columns:1fr!important}.dl-hero-copy{padding:18px 19px}.dl-main-hero::after{background:linear-gradient(0deg,rgba(4,7,12,.76),rgba(4,7,12,.08))!important}}
+
+/* ===== Mobile landing fix: direct YouTube link and Depeche Lord hero ===== */
+#depeche-lord{scroll-margin-top:16px}
+@media(max-width:650px){
+  .page{padding-left:10px;padding-right:10px}
+  .new-portal{margin-top:18px}
+  .main-switcher{margin-top:18px;padding:10px;gap:8px}
+  .main-switcher button{padding:11px 14px;font-size:15px;flex:1 1 calc(50% - 8px)}
+  .main-switcher button[data-scroll-top]{flex-basis:100%}
+
+  .dl-main-hero{
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    border-radius:24px;
+  }
+  .dl-main-hero img{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/10;
+    object-fit:cover;
+    object-position:center center;
+  }
+  .dl-main-hero::after{display:none!important}
+  .dl-hero-copy{
+    position:static!important;
+    left:auto!important;
+    right:auto!important;
+    top:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    width:auto!important;
+    margin:0;
+    padding:22px 20px 24px!important;
+    border:0!important;
+    border-top:1px solid rgba(255,255,255,.10)!important;
+    border-radius:0!important;
+    background:#070c15!important;
+    backdrop-filter:none!important;
+    text-shadow:none!important;
+  }
+  .dl-hero-kicker{font-size:12px;letter-spacing:.20em;margin-bottom:8px}
+  .dl-hero-copy h2{
+    font-size:clamp(38px,13vw,58px)!important;
+    line-height:.94;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  .dl-hero-copy p{font-size:17px;line-height:1.55;margin-top:16px}
+}
