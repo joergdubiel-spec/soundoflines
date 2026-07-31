@@ -312,12 +312,14 @@ body{
 
 /* ===== Depeche-Lord-Umbau: lokale Testversion ===== */
 .new-portal{margin-top:28px}
-.portal-grid-new{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:28px}
-.portal-card-new{position:relative;min-height:360px;padding:42px;border:1px solid rgba(255,255,255,.16);border-radius:30px;overflow:hidden;text-align:left;color:#fff;cursor:pointer;box-shadow:0 24px 60px rgba(0,0,0,.34);transition:transform .2s ease,border-color .2s ease}
+.portal-grid-new{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,.86fr) minmax(0,.86fr);gap:24px}
+.portal-card-new{position:relative;min-height:340px;padding:42px;border:1px solid rgba(255,255,255,.16);border-radius:30px;overflow:hidden;text-align:left;color:#fff;cursor:pointer;box-shadow:0 24px 60px rgba(0,0,0,.34);transition:transform .2s ease,border-color .2s ease}
 .portal-card-new:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.38)}
 .portal-card-new:focus-visible,.hall-portrait:focus-visible,.main-switcher button:focus-visible,.dl-quick-nav button:focus-visible,.story-toggle:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .portal-dl{background:radial-gradient(circle at 72% 18%,rgba(201,56,41,.42),transparent 28%),linear-gradient(135deg,#090b10 0%,#151a25 55%,#301512 100%)}
 .portal-dl:after{content:"DL";position:absolute;right:28px;bottom:-38px;font:900 190px/1 Arial,sans-serif;letter-spacing:-.08em;color:rgba(255,255,255,.045)}
+.portal-studio{background:linear-gradient(135deg,rgba(5,10,17,.44),rgba(55,30,16,.68)),url("../images/pear-studios.webp") center/cover no-repeat;isolation:isolate}
+.portal-studio:after{content:"13 ROOMS";position:absolute;right:24px;bottom:20px;color:rgba(255,255,255,.08);font:900 clamp(44px,4vw,76px)/1 Arial,sans-serif;letter-spacing:-.06em}
 .portal-hall{background:linear-gradient(90deg,rgba(91,42,20,.94),rgba(20,28,49,.96));isolation:isolate}
 .portal-hall:before{content:"";position:absolute;inset:28px;background:repeating-linear-gradient(90deg,transparent 0 16%,rgba(255,225,180,.13) 16.3% 17%,transparent 17.3% 33%);border:1px solid rgba(255,220,170,.18);clip-path:polygon(8% 0,92% 0,70% 100%,30% 100%);z-index:-1}
 .portal-eyebrow{display:block;margin-bottom:22px;font-size:14px;font-weight:800;letter-spacing:.28em;color:#ffcf96}
@@ -501,3 +503,49 @@ body{
   }
   .dl-hero-copy p{font-size:17px;line-height:1.55;margin-top:16px}
 }
+
+
+/* ===== Pear Studios: interaktiver Rundgang ===== */
+#pear-studios{scroll-margin-top:18px}
+.studio-tour-hero{position:relative;overflow:hidden;min-height:480px;border-radius:30px;border:1px solid rgba(255,255,255,.14);background:#080d14;box-shadow:0 24px 60px rgba(0,0,0,.34)}
+.studio-tour-hero img{display:block;width:100%;height:100%;min-height:480px;object-fit:cover;object-position:center}
+.studio-tour-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,7,12,.90) 0%,rgba(3,7,12,.66) 38%,rgba(3,7,12,.08) 72%,rgba(3,7,12,.28) 100%)}
+.studio-tour-hero-copy{position:absolute;z-index:2;left:clamp(24px,5vw,84px);top:50%;transform:translateY(-50%);width:min(760px,58%);padding:26px 30px;border-radius:24px;background:rgba(3,7,12,.50);border:1px solid rgba(255,255,255,.12)}
+.studio-tour-hero-copy>p{margin:0 0 12px;color:#ffcf96;font-size:14px;font-weight:900;letter-spacing:.25em}
+.studio-tour-hero-copy h2{margin:0;font:800 clamp(46px,5vw,88px)/.96 Georgia,"Times New Roman",serif}
+.studio-tour-hero-copy>div{margin-top:18px;color:#e0e8f3;font-size:clamp(18px,1.35vw,25px);line-height:1.55}
+.studio-tour-intro{margin-top:26px;padding:28px 30px;border-radius:26px;background:linear-gradient(135deg,rgba(26,18,13,.94),rgba(12,21,35,.96));border:1px solid rgba(255,255,255,.12)}
+.studio-tour-intro h3{margin:0 0 10px;font-size:clamp(30px,2.5vw,48px)}
+.studio-tour-intro p{max-width:1200px;margin:0;color:#dce6f3;font-size:19px;line-height:1.65}
+.studio-zones{display:grid;gap:28px;margin-top:28px}
+.studio-zone{padding:26px;border-radius:26px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10)}
+.studio-zone-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.10)}
+.studio-zone-head span{color:#ffcf96;font-size:12px;font-weight:900;letter-spacing:.22em}
+.studio-zone-head h3{margin:0;font-size:clamp(26px,2vw,38px)}
+.studio-room-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.studio-room-card{display:flex;flex-direction:column;min-width:0;padding:0;overflow:hidden;border-radius:20px;border:1px solid rgba(255,255,255,.13);background:rgba(3,7,12,.62);color:#fff;text-align:left;cursor:pointer;box-shadow:0 14px 30px rgba(0,0,0,.23);transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.studio-room-card:hover,.studio-room-card.active{transform:translateY(-3px);border-color:#ffcf96;background:rgba(34,24,16,.86)}
+.studio-room-image{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#090d14}
+.studio-room-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .24s ease}
+.studio-room-card:hover .studio-room-image img{transform:scale(1.025)}
+.studio-room-number{position:absolute;left:12px;top:12px;display:grid;place-items:center;min-width:42px;height:42px;padding:0 10px;border-radius:999px;background:rgba(5,9,15,.86);border:1px solid rgba(255,255,255,.20);color:#ffcf96;font-weight:900}
+.studio-room-card-copy{display:block;padding:16px 17px 18px}
+.studio-room-card-copy strong{display:block;font-size:21px;line-height:1.18}
+.studio-room-card-copy small{display:block;margin-top:7px;color:#bdd0e6;font-size:15px;line-height:1.4}
+.studio-room-detail{display:block;margin-top:28px;padding:20px 24px;border-radius:28px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);scroll-margin-top:18px}
+.studio-room-detail.active{padding:24px;background:linear-gradient(135deg,rgba(10,17,29,.98),rgba(48,27,17,.94));border-color:rgba(255,207,150,.30);box-shadow:0 20px 48px rgba(0,0,0,.30)}
+.studio-detail-placeholder{margin:0;color:#bcd0e8;font-size:18px}
+.studio-detail-grid{display:grid;grid-template-columns:minmax(320px,1.1fr) minmax(0,.9fr);gap:28px;align-items:center}
+.studio-detail-image{display:block;overflow:hidden;border-radius:20px;background:#070b11;box-shadow:0 16px 36px rgba(0,0,0,.34)}
+.studio-detail-image img{display:block;width:100%;aspect-ratio:16/9;object-fit:contain}
+.studio-detail-copy>span{display:block;color:#ffcf96;font-size:13px;font-weight:900;letter-spacing:.17em}
+.studio-detail-copy h3{margin:10px 0 14px;font-size:clamp(30px,3vw,54px);line-height:1.04}
+.studio-detail-copy p{margin:0;color:#dce6f3;font-size:19px;line-height:1.68}
+.studio-detail-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.studio-detail-actions a,.studio-detail-actions button{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:12px 18px;border-radius:999px;font-size:16px;font-weight:800;text-decoration:none;cursor:pointer}
+.studio-detail-actions a{background:#8fc7ff;color:#06203b}
+.studio-detail-actions button{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:#fff}
+@media(max-width:1250px){.portal-grid-new{grid-template-columns:1fr 1fr}.portal-dl{grid-column:1/-1}.portal-card-new{min-height:300px}}
+@media(max-width:900px){.studio-tour-hero,.studio-tour-hero img{min-height:430px}.studio-tour-hero-copy{left:22px;right:22px;bottom:24px;top:auto;transform:none;width:auto}.studio-tour-hero::after{background:linear-gradient(0deg,rgba(3,7,12,.94),rgba(3,7,12,.10))}.studio-detail-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.portal-grid-new{grid-template-columns:1fr}.portal-dl{grid-column:auto}.studio-tour-hero,.studio-tour-hero img{min-height:390px}.studio-tour-hero-copy{padding:20px}.studio-tour-hero-copy h2{font-size:clamp(40px,12vw,62px)}.studio-tour-intro,.studio-zone{padding:20px}.studio-zone-head{display:block}.studio-zone-head h3{margin-top:7px}.studio-room-grid{grid-template-columns:1fr 1fr;gap:12px}.studio-room-card-copy{padding:13px}.studio-room-card-copy strong{font-size:17px}.studio-room-card-copy small{font-size:13px}.studio-room-number{min-width:36px;height:36px;font-size:14px}.studio-room-detail{padding:16px}.studio-detail-copy p{font-size:17px}}
+@media(max-width:430px){.studio-room-grid{grid-template-columns:1fr}}
