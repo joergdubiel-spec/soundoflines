@@ -318,7 +318,7 @@ body{
 .portal-card-new:focus-visible,.hall-portrait:focus-visible,.main-switcher button:focus-visible,.dl-quick-nav button:focus-visible,.story-toggle:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .portal-dl{background:radial-gradient(circle at 72% 18%,rgba(201,56,41,.42),transparent 28%),linear-gradient(135deg,#090b10 0%,#151a25 55%,#301512 100%)}
 .portal-dl:after{content:"DL";position:absolute;right:28px;bottom:-38px;font:900 190px/1 Arial,sans-serif;letter-spacing:-.08em;color:rgba(255,255,255,.045)}
-.portal-studio{background:linear-gradient(135deg,rgba(5,10,17,.44),rgba(55,30,16,.68)),url("../images/pear-studios.webp") center/cover no-repeat;isolation:isolate}
+.portal-studio{background:linear-gradient(180deg,rgba(5,10,17,.10) 0%,rgba(20,13,10,.36) 48%,rgba(20,13,10,.94) 100%),url("../images/pear-studios.webp") center top/100% auto no-repeat,#140d0a;isolation:isolate}
 .portal-studio:after{content:none}
 .portal-hall{background:linear-gradient(90deg,rgba(91,42,20,.94),rgba(20,28,49,.96));isolation:isolate}
 .portal-hall:before{content:"";position:absolute;inset:28px;background:repeating-linear-gradient(90deg,transparent 0 16%,rgba(255,225,180,.13) 16.3% 17%,transparent 17.3% 33%);border:1px solid rgba(255,220,170,.18);clip-path:polygon(8% 0,92% 0,70% 100%,30% 100%);z-index:-1}
