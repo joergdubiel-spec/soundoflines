@@ -117,10 +117,13 @@ function toggleBlock(id){
     if(open) setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},60);
   };
   window.toggleSection=function(id){ showView(id==='rew-panel'?'view-depeche':'view-artists'); };
-  function showView(id){
+  function showView(id, shouldScroll=true){
     document.querySelectorAll('.main-view').forEach(v=>v.classList.toggle('active',v.id===id));
     document.querySelectorAll('[data-main-view]').forEach(b=>b.classList.toggle('active',b.dataset.mainView===id));
-    const target=document.getElementById(id); if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    if(shouldScroll){
+      const target=document.getElementById(id);
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
   }
   function openDlGroup(id,button){
     const target=document.getElementById(id); if(!target) return;
@@ -298,14 +301,25 @@ function toggleBlock(id){
     document.querySelectorAll('[data-scroll-top]').forEach(b=>b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'})));
     document.querySelectorAll('.hall-portrait').forEach(b=>b.addEventListener('click',()=>showArtist(b.dataset.artist)));
     document.querySelectorAll('#view-depeche .back-btn').forEach(b=>b.remove());
-    if(window.location.hash === '#pear-studios') showView('view-studio');
-    else if(window.location.hash === '#artists-hall') showView('view-artists');
-    else showView('view-depeche');
-    if(window.location.hash === '#depeche-lord'){
+    const hash=window.location.hash;
+    if(hash === '#pear-studios'){
+      showView('view-studio');
+    }else if(hash === '#artists-hall'){
+      showView('view-artists');
+    }else if(hash === '#depeche-lord'){
+      showView('view-depeche',false);
       setTimeout(function(){
         const target=document.querySelector('#depeche-lord .dl-main-hero') || document.getElementById('depeche-lord');
         if(target) target.scrollIntoView({behavior:'auto',block:'start'});
       },180);
+    }else{
+      // A normal visit to soundoflines.com must always begin at the real top
+      // of the page. Do not restore an old scroll position or jump to a view.
+      if('scrollRestoration' in history) history.scrollRestoration='manual';
+      showView('view-depeche',false);
+      window.scrollTo(0,0);
+      requestAnimationFrame(function(){ window.scrollTo(0,0); });
+      setTimeout(function(){ window.scrollTo(0,0); },180);
     }
   });
 })();
