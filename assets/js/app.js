@@ -161,7 +161,7 @@ function toggleBlock(id){
     const interviews=document.getElementById('group-depeche-interviews');
     const studio=document.getElementById('group-depeche-behind');
     const staff=document.getElementById('group-depeche-staff');
-    const statements=addEditorialGroup(block,'group-depeche-statements','Statements');
+    const statements=addEditorialGroup(block,'group-depeche-statements','Statements & Anekdoten');
     const offrecord=addEditorialGroup(block,'group-depeche-offrecord','Off the Record');
     setGroupLabel('group-depeche-origin','Die Geschichte');
     setGroupLabel('group-depeche-interviews','Interviews');
@@ -185,7 +185,6 @@ function toggleBlock(id){
     if(statements) statements.innerHTML=`<div class="editorial-grid">
       ${quote('Eliot Reeves','„Wir sind nicht der Mittelpunkt der Musik. Wir sind Depeche Lord. Wir singen von dem, was du kennst, aber nicht aussprechen willst.“','Über die Band')}
       ${quote('Eliot Reeves','„Wenn wir mit unseren Songs auch nur das Herz eines einzelnen Menschen erreichen, haben sie erreicht, wofür sie geschaffen wurden.“','Über den Sinn der Songs')}
-      ${quote('Eliot Reeves','„Wir haben vieles falsch gemacht und vieles richtig. Immer wenn wir glaubten, alles läuft prima, hatte das Leben einen anderen Einfall. Wir sind noch da. Also haben wir jeden Einfall überlebt.“','Über den Weg')}
       ${quote('Brian Rix','„Eliot sagte, ich solle mich nicht so laut in den Vordergrund trommeln. Ich sagte: Du singst zu leise.“','Über Rücksicht in der Band')}
       ${quote('Dylan Cole','„Mein Großvater sagte, ich solle etwas Anständiges lernen. Ich wurde Musiker und bewies, dass beides geht. Danke, Grandpa, für die Gitarre.“','Über seinen Anfang')}
       ${quote('Eliot Reeves','„Mich interessieren keine Zeitungstitel mit meinem Gesicht, wenn die Geschichte darin nur aus Lügen besteht.“','Über Presse')}
@@ -230,7 +229,7 @@ function toggleBlock(id){
     const old=block.querySelector('.dl-quick-nav');if(old)old.remove();
     const nav=document.createElement('nav'); nav.className='dl-quick-nav'; nav.setAttribute('aria-label','Depeche Lord Bereiche');
     const items=[
-      ['Tracks','group-depeche-official'],['World Tour 2026','group-depeche-tour'],['Band','group-depeche-band'],['Geschichte','group-depeche-origin'],['Interviews','group-depeche-interviews'],['Statements','group-depeche-statements'],['Studio Stories','group-depeche-behind'],['Pear Studios & Team','group-depeche-staff'],['Off the Record','group-depeche-offrecord'],['Archiv','group-depeche-archive']
+      ['Tracks','group-depeche-official'],['World Tour 2026','group-depeche-tour'],['Band','group-depeche-band'],['Geschichte','group-depeche-origin'],['Interviews','group-depeche-interviews'],['Statements & Anekdoten','group-depeche-statements'],['Studio Stories','group-depeche-behind'],['Pear Studios & Team','group-depeche-staff'],['Off the Record','group-depeche-offrecord'],['Archiv','group-depeche-archive']
     ];
     items.forEach(function(item){const b=document.createElement('button');b.type='button';b.textContent=item[0];b.dataset.target=item[1];b.onclick=function(){openDlGroup(item[1],b);};nav.appendChild(b);});
     block.insertBefore(nav,block.firstChild);
