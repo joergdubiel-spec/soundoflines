@@ -10,7 +10,20 @@
 <script defer src="https://cloud.umami.is/script.js" data-website-id="1e4e2026-9854-4cf8-a554-453d5062459c"></script>
 
 
-<link href="assets/css/styles.css" rel="stylesheet"/></head>
+<link href="assets/css/styles.css" rel="stylesheet"/>
+<style>
+.song-card-with-info{display:flex;flex-direction:column;min-width:0}
+.song-card-with-info>.video-card{width:100%;box-sizing:border-box}
+.song-info-btn{margin-top:8px;width:100%;padding:9px 12px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(255,255,255,.06);color:inherit;font:inherit;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:background .18s ease,border-color .18s ease}
+.song-info-btn:hover,.song-info-btn[aria-expanded="true"]{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.3)}
+.song-info-panel{margin-top:7px;padding:12px 13px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(0,0,0,.18);font-size:14px;line-height:1.55}
+.song-info-panel[hidden]{display:none}
+.song-info-panel h5{margin:0 0 8px;font-size:14px}
+.song-info-panel p{margin:0 0 8px}
+.song-info-panel p:last-child{margin-bottom:0}
+.song-info-source{font-size:12px;opacity:.72}
+</style>
+</head>
 <body>
 <div class="page">
 <header class="hero hero-banner">
@@ -1972,6 +1985,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/Imole4kEeT0" onclick="trackClick('video/Depeche Lord – Still We Try', 'Depeche Lord – Still We Try')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Still We Try" src="https://img.youtube.com/vi/Imole4kEeT0/hqdefault.jpg"/>
 <div class="overlay">
@@ -1979,6 +1993,12 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-still-we-try" onclick="toggleSongInfo(this,'song-info-still-we-try')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-still-we-try" hidden>
+<h5>Bedeutung &amp; Haltung</h5>
+<p>„Wir haben sovieles falsch gemacht und sovieles richtig. Nur immer wenn wir glaubten alles läuft prima hatte das Leben einen anderen Einfall. Wir sind immer noch da, also haben wir jeden Einfall überlebt.“</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/tBB037ADaZA" onclick="trackClick('video/Depeche Lord – Heroes Never Die Loudly', 'Depeche Lord – Heroes Never Die Loudly')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Heroes Never Die Loudly" src="https://img.youtube.com/vi/tBB037ADaZA/hqdefault.jpg"/>
 <div class="overlay">
@@ -1993,6 +2013,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/mIT9X3_A_MM" onclick="trackClick('video/Depeche Lord – Buried on the Moon', 'Depeche Lord – Buried on the Moon')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Buried on the Moon" src="https://img.youtube.com/vi/mIT9X3_A_MM/hqdefault.jpg"/>
 <div class="overlay">
@@ -2000,6 +2021,12 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-buried-moon" onclick="toggleSongInfo(this,'song-info-buried-moon')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-buried-moon" hidden>
+<h5>Entstehung &amp; Titelidee</h5>
+<p>„Wir haben in vielen Ländern der Erde gspielt. David warf ein , auf dem Mond waren wir noch nicht. Ich sah ihn staunend an. Gute Idee, fragen wir Elon oder die NASA?Er nickte, das wäre es und warf seine Whiskyflasche weg.“</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/sOJ_e1jneoY" onclick="trackClick('video/Depeche Lord – Only For You', 'Depeche Lord – Only For You')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Only For You" src="https://img.youtube.com/vi/sOJ_e1jneoY/hqdefault.jpg"/>
 <div class="overlay">
@@ -2014,6 +2041,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/QbZGZAOEeys" onclick="trackClick('video/Depeche Lord – Who Am I', 'Depeche Lord – Who Am I')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Who Am I" src="https://img.youtube.com/vi/QbZGZAOEeys/hqdefault.jpg"/>
 <div class="overlay">
@@ -2021,6 +2049,12 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-who-am-i" onclick="toggleSongInfo(this,'song-info-who-am-i')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-who-am-i" hidden>
+<h5>Bedeutung &amp; Gedanke</h5>
+<p>„Als ich an einem eckigen Planeten vorbeiflog, fragte ich mich, ob ich nicht von einer Scheibe gestartet bin. Wenn selbst das Universum nicht weiß, welche Form richtig ist – warum sollte ich wissen, wer ich bin?“</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/h9_BAgPq9BU" onclick="trackClick('video/Depeche Lord – When Everything Breaks', 'Depeche Lord – When Everything Breaks')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – When Everything Breaks" src="https://img.youtube.com/vi/h9_BAgPq9BU/hqdefault.jpg"/>
 <div class="overlay">
@@ -2049,6 +2083,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/ggt7AgfNmyU" onclick="trackClick('video/Depeche Lord – Love Is Not Always Truth', 'Depeche Lord – Love Is Not Always Truth')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Love Is Not Always Truth" src="https://img.youtube.com/vi/ggt7AgfNmyU/hqdefault.jpg"/>
 <div class="overlay">
@@ -2056,6 +2091,14 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-love-truth" onclick="toggleSongInfo(this,'song-info-love-truth')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-love-truth" hidden>
+<h5>Bedeutung</h5>
+<p>„Ich denke das darin viel Wahrheit steckt, jeder kennt diese Sitution in der die Träume einer großen Liebe platzen. Wir haben nur die Realität beschrieben.“</p>
+<p class="song-info-source">— Eliot Reeves, Lead Vocals</p>
+</div>
+</div>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/FKsNDkX6_2g" onclick="trackClick('video/Depeche Lord – Afternoon Delight', 'Depeche Lord – Afternoon Delight')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Afternoon Delight" src="https://img.youtube.com/vi/FKsNDkX6_2g/hqdefault.jpg"/>
 <div class="overlay">
@@ -2063,6 +2106,14 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-afternoon-delight" onclick="toggleSongInfo(this,'song-info-afternoon-delight')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-afternoon-delight" hidden>
+<h5>Story vom Videodreh</h5>
+<p>„Als wir das Video zu „Afternoon Delight“ machten, kam da dieses Model darin vor. Sie kam einfach auf mich zu und sagte, ich finde es total verrückt mit dir zu drehen. Sie nahm mir meine Worte weg.“</p>
+<p class="song-info-source">— Eliot Reeves</p>
+</div>
+</div>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/-vm752pAwa4" onclick="trackClick('video/Depeche Lord – The Chaos in My Head', 'Depeche Lord – The Chaos in My Head')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – The Chaos in My Head" src="https://img.youtube.com/vi/-vm752pAwa4/hqdefault.jpg"/>
 <div class="overlay">
@@ -2070,6 +2121,14 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-chaos-head" onclick="toggleSongInfo(this,'song-info-chaos-head')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-chaos-head" hidden>
+<h5>Entstehung</h5>
+<p>„Das ist ein schwieriges Thema, wir waren auf Tournee, wir mussten ins Studio, wir fühlten uns irgendwie verbrannt, aber wir funktionierten. Keiner hat es bemerkt, denn wir waren ja da, haben alles gegeben. Diesen Zustand wollte ich beschreiben. Fertig, aber keiner hat es je bemerkt.“</p>
+<p class="song-info-source">— Eliot Reeves, Lead Vocals</p>
+</div>
+</div>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/yRn8qdAzm2w" onclick="trackClick('video/Depeche Lord – Venezuela Girl', 'Depeche Lord – Venezuela Girl')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Venezuela Girl" src="https://img.youtube.com/vi/yRn8qdAzm2w/hqdefault.jpg"/>
 <div class="overlay">
@@ -2077,6 +2136,13 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-venezuela-girl" onclick="toggleSongInfo(this,'song-info-venezuela-girl')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-venezuela-girl" hidden>
+<h5>Persönlicher Hintergrund</h5>
+<p>„Nun, es gibt im Leben Momente in denen man sich einer Person verbunden fühlt. Es trennt einen Vieles, Entfernung, Kultur, Sprache und trotzdem entsteht etwas was eigentlich nicht sein dürfte, was vollkommen irreal ist und trotzdem passiert es. Das alles habe ich verarbeitet im Text und ja ich liebe sie. My Venezuela Girl.“</p>
+<p class="song-info-source">— Eliot Reeves, Lead Vocals</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/5PLAHHkMmE0" onclick="trackClick('video/Depeche Lord – No Hidden Lie', 'Depeche Lord – No Hidden Lie')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – No Hidden Lie" src="https://img.youtube.com/vi/5PLAHHkMmE0/hqdefault.jpg"/>
 <div class="overlay">
@@ -2084,6 +2150,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/M6CSNjtilxw" onclick="trackClick('video/Depeche Lord – We Are Not Numbers', 'Depeche Lord – We Are Not Numbers')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – We Are Not Numbers" src="https://img.youtube.com/vi/M6CSNjtilxw/hqdefault.jpg"/>
 <div class="overlay">
@@ -2091,6 +2158,12 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-not-numbers" onclick="toggleSongInfo(this,'song-info-not-numbers')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-not-numbers" hidden>
+<h5>Statement</h5>
+<p>„YT ist eine Plattform, mehr nicht. Wir sind wir. Verbiegen wir uns? Nein. Jagen wir Klicks, Watchtime oder CTR? Nein. Diese Zahlen spiegeln nie die Wahrheit wieder. Menschen, die du erreichen möchtest, werden ausgesperrt, weil der Algorithmus Entscheidungen trifft, die niemand nachvollziehen kann. Trotzdem werden wir gefunden. Trotzdem werden wir geliebt. Sind wir also schlecht?“</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/5HFEAmJlpeA" onclick="trackClick('video/Depeche Lord – I Want You Back', 'Depeche Lord – I Want You Back')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – I Want You Back" src="https://img.youtube.com/vi/5HFEAmJlpeA/hqdefault.jpg"/>
 <div class="overlay">
@@ -2098,6 +2171,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/UTL31fZ8FLE" onclick="trackClick('video/Depeche Lord – The Business Of Lies', 'Depeche Lord – The Business Of Lies')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – The Business Of Lies" src="https://img.youtube.com/vi/UTL31fZ8FLE/hqdefault.jpg"/>
 <div class="overlay">
@@ -2105,6 +2179,13 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-business-lies" onclick="toggleSongInfo(this,'song-info-business-lies')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-business-lies" hidden>
+<h5>Entstehung</h5>
+<p>„Ich saß eines Tages und wollte einen Text für einen neuen Song schreiben, David McLean kam herein und fragte was machst du gerade? Ich zeigte ihm das leere Blatt. Er meinte, ich habe gerade das schwachsinnige Video eines Influencers gesehen. Zwei Stunden später war der Text für The Business Of Lies fertig. Danke Bruder.“</p>
+<p class="song-info-source">— Eliot Reeves, Lead Vocals</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/lFJhbzyBuSk" onclick="trackClick('video/Depeche Lord – Run for Me', 'Depeche Lord – Run for Me')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Run for Me" src="https://img.youtube.com/vi/lFJhbzyBuSk/hqdefault.jpg"/>
 <div class="overlay">
@@ -2126,6 +2207,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/7yTswu3nqdQ" onclick="trackClick('video/Depeche Lord – The Price We Pay', 'Depeche Lord – The Price We Pay')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – The Price We Pay" src="https://img.youtube.com/vi/7yTswu3nqdQ/hqdefault.jpg"/>
 <div class="overlay">
@@ -2133,6 +2215,13 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-price-we-pay" onclick="toggleSongInfo(this,'song-info-price-we-pay')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-price-we-pay" hidden>
+<h5>Entstehung & Bandgeschichte</h5>
+<p>„Dass wir nach Mexico wollten war keine freie Entscheidung oder würden sie frierend mit drei Freunden ewig im engen kleinen Bus wohnen? In Mexico wäre es wenigstens warm. Wir hatten doch nichts zu verlieren. Wir standen vor dem Schalter der Airline und hofften unser letztes Geld würde für die Tickets reichen. Brian Rix’ Mutter hatte uns noch etwas zugesteckt. Als wir ankamen und diesen Truck kauften sahen wir die mitleidigen Blicke der Umstehenden. Wir haben nie wieder in unserem Leben ein Fahrzeug gesehen was so fertig und gleichzeitig so zuverlässig war. Und wenn man das alles so erlebt hat ist man für immer dankbar für das was passiert ist, es war der Weg den wir gingen weil niemand an uns geglaubt hat ausser wir selbst. Also Glauben zahlt sich aus.“</p>
+<p class="song-info-source">— Eliot Reeves, Lead Vocals</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/oFIWtgQkTow" onclick="trackClick('video/Depeche Lord – When the Walls Fall', 'Depeche Lord – When the Walls Fall')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – When the Walls Fall" src="https://img.youtube.com/vi/oFIWtgQkTow/hqdefault.jpg"/>
 <div class="overlay">
@@ -2278,6 +2367,7 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<div class="song-card-with-info">
 <a class="video-card" href="https://youtu.be/FZJTYAMWlFg" onclick="trackClick('video/Depeche Lord – Who You Really Are (World Tour 2026 Live Tokyo Budokan)', 'Depeche Lord – Who You Really Are (World Tour 2026 Live Tokyo Budokan)')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – Who You Really Are (World Tour 2026 Live Tokyo Budokan)" src="https://img.youtube.com/vi/FZJTYAMWlFg/hqdefault.jpg"/>
 <div class="overlay">
@@ -2285,6 +2375,13 @@
 <div class="video-meta">Auf YouTube ansehen</div>
 </div>
 </a>
+<button class="song-info-btn" type="button" aria-expanded="false" aria-controls="song-info-tokyo-yellow-submarine" onclick="toggleSongInfo(this,'song-info-tokyo-yellow-submarine')">Hintergrund zum Song ▾</button>
+<div class="song-info-panel" id="song-info-tokyo-yellow-submarine" hidden>
+<h5>Videoidee & Hintergrund</h5>
+<p>„Nun, wir Vier sind alle große Fans der besten Band der Welt die es mal gab und gelb ist eine schöne Farbe. Was bietet sich noch an wenn man in Tokyo Auftritt und ein Video macht, richtig, das Land in dem Manga eine große Rolle spielt. Das war kein PR Gag, es war eine Hommage an Japan.“</p>
+<p class="song-info-source">— David McLean, Synthesizer / Keys / Sound Design</p>
+</div>
+</div>
 <a class="video-card" href="https://youtu.be/2RFn3b1fJjU" onclick="trackClick('video/Depeche Lord – What We Hide (World Tour 2026 Live in Ciudad Bolívar)', 'Depeche Lord – What We Hide (World Tour 2026 Live in Ciudad Bolívar)')" rel="noopener noreferrer" target="_blank">
 <img alt="Depeche Lord – What We Hide (World Tour 2026 Live in Ciudad Bolívar)" src="https://img.youtube.com/vi/2RFn3b1fJjU/hqdefault.jpg"/>
 <div class="overlay">
@@ -2439,44 +2536,12 @@
 </div>
 <div class="subgroup">
 <div class="subgroup-head">
-<h4>Behind the Songs</h4>
-<button class="open-btn subgroup-btn" onclick="toggleBlock('group-depeche-behind')">Öffnen</button>
+<h4>Statements &amp; Anekdoten</h4>
+<button class="open-btn subgroup-btn" onclick="toggleBlock('group-depeche-statements')">Öffnen</button>
 </div>
-<div class="group-videos" id="group-depeche-behind">
-<p class="subgroup-copy">Sechs Song-Entstehungen aus der Welt von Depeche Lord — als kleine Zitate, Erinnerungen und Momentaufnahmen der Band.</p>
-<div class="dl-info-grid">
-<div class="dl-info-card">
-<h5>Love Is Not Always Truth</h5>
-<p>„Ich denke das darin viel Wahrheit steckt, jeder kennt diese Sitution in der die Träume einer großen Liebe platzen. Wir haben nur die Realität beschrieben.“</p>
-<p class="dl-small">— Eliot Reeves, Lead Vocals</p>
-</div>
-<div class="dl-info-card">
-<h5>The Price We Pay</h5>
-<p>„Dass wir nach Mexico wollten war keine freie Entscheidung oder würden sie frierend mit drei Freunden ewig im engen kleinen Bus wohnen? In Mexico wäre es wenigstens warm. Wir hatten doch nichts zu verlieren. Wir standen vor dem Schalter der Airline und hofften unser letztes Geld würde für die Tickets reichen. Brian Rix’ Mutter hatte uns noch etwas zugesteckt. Als wir ankamen und diesen Truck kauften sahen wir die mitleidigen Blicke der Umstehenden. Wir haben nie wieder in unserem Leben ein Fahrzeug gesehen was so fertig und gleichzeitig so zuverlässig war. Und wenn man das alles so erlebt hat ist man für immer dankbar für das was passiert ist, es war der Weg den wir gingen weil niemand an uns geglaubt hat ausser wir selbst. Also Glauben zahlt sich aus.“</p>
-<p class="dl-small">— Eliot Reeves, Lead Vocals</p>
-</div>
-<div class="dl-info-card">
-<h5>The Chaos in My Head</h5>
-<p>„Das ist ein schwieriges Thema, wir waren auf Tournee, wir mussten ins Studio, wir fühlten uns irgendwie verbrannt, aber wir funktionierten. Keiner hat es bemerkt, denn wir waren ja da, haben alles gegeben. Diesen Zustand wollte ich beschreiben. Fertig, aber keiner hat es je bemerkt.“</p>
-<p class="dl-small">— Eliot Reeves, Lead Vocals</p>
-</div>
-<div class="dl-info-card">
-<h5>The Business Of Lies</h5>
-<p>„Ich saß eines Tages und wollte einen Text für einen neuen Song schreiben, David McLean kam herein und fragte was machst du gerade? Ich zeigte ihm das leere Blatt. Er meinte, ich habe gerade das schwachsinnige Video eines Influencers gesehen. Zwei Stunden später war der Text für The Business Of Lies fertig. Danke Bruder.“</p>
-<p class="dl-small">— Eliot Reeves, Lead Vocals</p>
-</div>
-<div class="dl-info-card">
-<h5>Tokyo / Yellow Submarine Moment</h5>
-<p>„Nun, wir Vier sind alle große Fans der besten Band der Welt die es mal gab und gelb ist eine schöne Farbe. Was bietet sich noch an wenn man in Tokyo Auftritt und ein Video macht, richtig, das Land in dem Manga eine große Rolle spielt. Das war kein PR Gag, es war eine Hommage an Japan.“</p>
-<p class="dl-small">— David McLean, Synthesizer / Keys / Sound Design</p>
-</div>
-<div class="dl-info-card">
-<h5>Venezuela Girl</h5>
-<p>„Nun, es gibt im Leben Momente in denen man sich einer Person verbunden fühlt. Es trennt einen Vieles, Entfernung, Kultur, Sprache und trotzdem entsteht etwas was eigentlich nicht sein dürfte, was vollkommen irreal ist und trotzdem passiert es. Das alles habe ich verarbeitet im Text und ja ich liebe sie. My Venezuela Girl.“</p>
-<p class="dl-small">— Eliot Reeves, Lead Vocals</p>
-</div>
-</div>
-<button class="back-btn small" onclick="toggleBlock('group-depeche-behind')">← Zurück</button>
+<div class="group-videos" id="group-depeche-statements">
+<p class="subgroup-copy">Gedanken, Interviews, Studio- und Touranekdoten aus der Welt von Depeche Lord. Songbezogene Hintergründe, Entstehungsgeschichten und Videoideen stehen ab jetzt direkt beim jeweiligen Titel.</p>
+<button class="back-btn small" onclick="toggleBlock('group-depeche-statements')">← Zurück</button>
 </div>
 </div>
 <div class="subgroup">
@@ -2804,6 +2869,17 @@
     E-Mail: soundoflines.music@proton.me
   </div>
 </footer>
+
+<script>
+function toggleSongInfo(button,id){
+  var panel=document.getElementById(id);
+  if(!panel)return;
+  var willOpen=panel.hasAttribute('hidden');
+  if(willOpen){panel.removeAttribute('hidden');}else{panel.setAttribute('hidden','');}
+  button.setAttribute('aria-expanded',willOpen?'true':'false');
+  button.textContent=willOpen?'Hintergrund schließen ▴':'Hintergrund zum Song ▾';
+}
+</script>
 <script defer="defer" src="assets/js/app.js"></script></body>
 
 
